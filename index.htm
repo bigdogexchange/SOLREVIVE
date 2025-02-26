@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOL Revive - The Future of Solana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffffff 50%, #121212 50%);
+            color: #fff;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        .roadmap, .price-tracking {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .social-links a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">SOL Revive</div>
+        <p>The ultimate comeback of Solana! Join the revolution.</p>
+        
+        <div class="roadmap">
+            <h2>Roadmap</h2>
+            <p>Phase 1: Launch & Community Building</p>
+            <p>Phase 2: Marketing & Partnerships</p>
+            <p>Phase 3: Exchange Listings & Expansion</p>
+        </div>
+        
+        <div class="price-tracking">
+            <h2>Live Price Tracking</h2>
+            <p>Current Price: <span id="price">Loading...</span></p>
+        </div>
+        
+        <div class="social-links">
+            <h2>Follow Us</h2>
+            <a href="https://twitter.com/YOUR_TWITTER_HANDLE" target="_blank">Twitter</a>
+        </div>
+    </div>
+    
+    <script>
+        async function fetchPrice() {
+            try {
+                let response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd');
+                let data = await response.json();
+                document.getElementById('price').textContent = `$${data.solana.usd}`;
+            } catch (error) {
+                document.getElementById('price').textContent = 'Unavailable';
+            }
+        }
+        fetchPrice();
+        setInterval(fetchPrice, 60000);
+    </script>
+</body>
+</html>
